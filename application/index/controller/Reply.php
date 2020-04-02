@@ -50,4 +50,15 @@ class Reply extends BaseController
         $reply = ReplyService::Factory()->update($this->userId(), $id, $request->post('content'));
         $this->success('编辑成功', url('topic/show', ['id' => $reply['topic_id']]));
     }
+    
+    public function delete(Request $request)
+    {
+        //print_r($request);exit();
+        $id = $request->param('id');
+        if(empty($id)){
+            $this->error("您的请求有误!");
+        }
+        $reply = ReplyService::Factory()->delete($this->userId(),$id);
+        $this->success('删除成功',url('topic/show',['id' => $reply['topic_id']]));
+    }
 }
