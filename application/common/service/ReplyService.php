@@ -98,6 +98,7 @@ class ReplyService extends BaseObject implements PublishScoreInterface
             UserScoreLogService::Factory()->log($userId, -$score, $user->score, $msg);
             // 更新版块回复数
             ForumService::Factory()->addReplyCount($reply->forum_id, -1);
+            return $reply;
         });
     }
 
